@@ -2,6 +2,22 @@
 
 App sencilla que simula el registro de asistentes a un taller usando un **arreglo como lista**: se pueden **agregar**, **buscar** y **eliminar** elementos, sin usar nodos ni referencias enlazadas (eso vendrá más adelante con listas enlazadas).
 
+## Funcionamiento general
+
+El programa gira en torno a tres piezas que colaboran entre sí:
+
+1. **`Asistente`** representa a una sola persona (los datos).
+2. **`RegistroTaller`** guarda muchos `Asistente` dentro de un arreglo de tamaño fijo y ofrece las operaciones para administrarlos (la lógica).
+3. **`AppTaller`** es el punto de entrada (`main`) que usa a `RegistroTaller` para mostrar todo el flujo: crear, listar, buscar y eliminar asistentes.
+
+Como el arreglo tiene **capacidad fija** (se define al crear el `RegistroTaller`), no crece solo: si se intenta agregar un asistente cuando ya está lleno, el programa simplemente avisa que no hay espacio. Y como no hay nodos enlazados, eliminar un elemento del medio requiere **recorrer y desplazar** manualmente todos los elementos siguientes una posición hacia la izquierda para no dejar un "hueco" (ver la explicación detallada más abajo).
+
+## Conceptos clave aplicados
+
+- **Encapsulamiento**: los atributos de `Asistente` son `private`; solo se acceden mediante getters y un setter con validación.
+- **Composición**: `RegistroTaller` no hereda de `Asistente`, sino que *tiene* un arreglo de asistentes.
+- **Arreglo como estructura de datos simple**: sirve de base para entender por qué luego se necesitan listas enlazadas (evita el límite de tamaño fijo y el costo de desplazar elementos al eliminar).
+
 ## Clases
 
 ### `Asistente.java`
