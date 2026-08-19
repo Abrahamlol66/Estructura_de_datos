@@ -42,8 +42,5 @@ public class App_Playlist {
 
         //Estado final de la playlist
         playlist.mostrar();
-
-        //Mostrar el tamaño de la playlist
-        System.out.println("Tamaño de la playlist: " + playlist.getTamanio());
     }
 }
