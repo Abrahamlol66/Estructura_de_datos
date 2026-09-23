@@ -1,0 +1,49 @@
+//Abraham Radahi Bautista Triana
+
+package ed_proyecto;
+
+//Clase de PRUEBA (no es parte de la aplicacion final, solo sirve para probar CompresorHuffman desde consola), se dejó en txt solo por evidenciar
+//PruebaCompresorHuffman
+public class PruebaCompresorHuffman {
+
+    public static void main(String[] args){
+
+        CompresorHuffman compresor = new CompresorHuffman();
+
+        //Caso 1: texto normal, con varios caracteres repetidos en distinta frecuencia
+        String textoNormal = "el perro de san roque no tiene rabo";
+        probarCasoDeUsoCompleto(compresor, "CASO NORMAL", textoNormal);
+
+        //Caso 2: un solo caracter distinto, repetido varias veces (rompe implementaciones ingenuas de Huffman)
+        String textoUnCaracter = "aaaaaaaaaa";
+        probarCasoDeUsoCompleto(compresor, "CASO UN SOLO CARACTER", textoUnCaracter);
+
+        //Caso 3: texto vacio
+        String textoVacio = "";
+        probarCasoDeUsoCompleto(compresor, "CASO TEXTO VACIO", textoVacio);
+
+    }//Cierra el main
+
+    //Comprime, descomprime, y compara contra el original; imprime todo en consola
+    private static void probarCasoDeUsoCompleto(CompresorHuffman compresor, String nombreCaso, String texto){
+        System.out.println("== " + nombreCaso + " ==");
+        System.out.println("Original: \"" + texto + "\"");
+
+        String bits = compresor.comprimir(texto);
+        System.out.println("Bits comprimidos: " + bits);
+
+        String textoReconstruido = compresor.descomprimir(bits);
+        System.out.println("Reconstruido: \"" + textoReconstruido + "\"");
+
+        //La prueba real: el texto reconstruido debe ser EXACTAMENTE igual al original
+        boolean esIgual = texto.equals(textoReconstruido);
+        System.out.println("¿Coincide con el original?: " + esIgual);
+
+        System.out.println("Tamanio original (bits): " + compresor.getTamanioOriginalBits(texto));
+        System.out.println("Tamanio comprimido (bits): " + compresor.getTamanioComprimidoBits(bits));
+        System.out.println("Ahorro: " + compresor.getPorcentajeAhorro(texto, bits) + " %");
+
+        System.out.println();
+    }//Cierra probarCasoDeUsoCompleto
+
+}//Cierra la clase PruebaCompresorHuffman

@@ -1,0 +1,40 @@
+//Abraham Radahi Bautista Triana
+
+package ed_proyecto;
+
+//Clase ejecutora de PRUEBA, no es definitiva, solo es para ver que funcione correctamente todo lo anterior, se convirtio en formato txt solo para guardar el dato de que alguna vez fue parte del codigo y funcionaba
+
+public class PruebaColaPrioridad {
+
+    //main: punto de entrada para correr esta prueba desde consola
+    public static void main(String[] args){
+
+        //Creamos una cola de prioridad vacia
+        ColaPrioridad cola = new ColaPrioridad();
+
+        //Frecuencias a proposito desordenadas, para comprobar que el heap las ordena solo
+        int[] frecuencias = {15, 4, 22, 7, 1, 9};
+
+        //Insertamos una hoja por cada frecuencia
+        //El caracter no importa para esta prueba, usamos 'x' de relleno para todas
+        for (int i = 0; i < frecuencias.length; i++){
+            cola.insertar(new NodoHuffman('x', frecuencias[i]));
+        }//Cierra el for
+
+        //Deberia decir 6, confirmando que las seis hojas entraron bien
+        System.out.println("Tamanio despues de insertar: " + cola.getTamanio());
+
+        //Vamos sacando el minimo uno por uno hasta que la cola quede vacia
+        //Si el heap esta bien construido, deben salir en orden ascendente: 1, 4, 7, 9, 15, 22
+        System.out.println("Orden de salida (deberia ser ascendente):");
+        while(!cola.estaVacia()){
+            NodoHuffman actual = cola.extraerMinimo();
+            System.out.println("  " + actual.getFrecuencia());
+        }//Cierra el while
+
+        //Caso limite: sacar de una cola YA vacia no deberia tronar, debe regresar null
+        NodoHuffman vacio = cola.extraerMinimo();
+        System.out.println("Extraer de cola vacia (deberia ser null): " + vacio);
+
+    }//Cierra el main
+}//Cierra la clase PruebaColaPrioridad
