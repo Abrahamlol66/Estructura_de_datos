@@ -1,7 +1,5 @@
 package Clase_13;
 
-//Abraham Radahi Bautista Triana
-
 //Listas Enlazadas
 //Contexto. Es una playlist de musica. Las canciones se agregan al inicio o al final.
 
@@ -100,8 +98,6 @@ public class Lista_Enlazada{
             actual.siguiente = nuevo;
         }//Cierre else
 
-        //Aumenta el contador de elementos (faltaba aqui: agregarInicio ya lo hacia, agregarFinal se habia quedado sin contar)
-        tamanio += 1;
     }//Cierre metodo agregarFinal
 
     /**
@@ -262,33 +258,5 @@ public class Lista_Enlazada{
         //Getter: lectura controlada del atributo privado
         return tamanio;
     }//Cierre metodo getTamanio
-
-    /**
-     * Convierte la lista enlazada en un arreglo, respetando el mismo orden en que estan los nodos.
-     * Es el puente hacia los algoritmos de ordenamiento clasicos (como el bubble sort), que estan pensados para trabajar sobre arreglos y no sobre cadenas de nodos.
-     * @return arreglo de Strings con las canciones, del inicio de la lista al final
-     */
-    public String[] aArreglo() {
-        //Reservamos un arreglo exactamente del mismo tamanio que la lista: ni sobra ni falta espacio
-        String[] arreglo = new String[tamanio];
-
-        //Cursor desde el primero otra vez: cursor aparte para no mover inicio (mismo truco que en mostrar())
-        Nodo actual = inicio;
-
-        //Indice donde se va guardando cada cancion dentro del arreglo
-        int indice = 0;
-
-        //Recorrer toda la cadena mientras haya nodos por recorrer
-        while (actual != null) {
-            //Copiar el dato del nodo actual en su casilla del arreglo
-            arreglo[indice] = actual.cancion;
-
-            //Avanzar al siguiente nodo y a la siguiente casilla, en paralelo
-            actual = actual.siguiente;
-            indice += 1;
-        }//Cierre while
-
-        return arreglo;
-    }//Cierre metodo aArreglo
 
 }
